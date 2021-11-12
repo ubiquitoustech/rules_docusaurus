@@ -1,0 +1,77 @@
+# load(
+#     "@ubiquitous_tech_rules_docusaurus//docusaurus:defs.bzl",
+#     "docusaurus",
+#     "docusaurus_dev",
+# )
+
+load(
+    "@npm//@ubiquitoustech/rules_docusaurus:index.bzl",
+    "docusaurus",
+    "docusaurus_dev",
+)
+load("@npm//history-server:index.bzl", "history_server")
+
+docusaurus(
+    name = "prod",
+    srcs = glob([
+        "blog/**",
+        "docs/**",
+        "src/**",
+        "static/**",
+    ]) + [
+        "babel.config.js",
+        ":package.json",
+        ":yarn.lock",
+        "docusaurus.config.js",
+        "sidebars.js",
+    ],
+    deps = [
+        "@npm//@docusaurus/core",
+        "@npm//@docusaurus/preset-classic",
+        "@npm//@mdx-js/react",
+        "@npm//@svgr/webpack",
+        "@npm//clsx",
+        "@npm//file-loader",
+        "@npm//prism-react-renderer",
+        "@npm//react",
+        "@npm//react-dom",
+        "@npm//url-loader",
+    ],
+)
+
+docusaurus_dev(
+    name = "dev",
+    srcs = glob([
+        "blog/**",
+        "docs/**",
+        "src/**",
+        "static/**",
+    ]) + [
+        "babel.config.js",
+        ":package.json",
+        ":yarn.lock",
+        # "docusaurus.config.js",
+        "sidebars.js",
+    ],
+    config = "docusaurus.config.js",
+    deps = [
+        "@npm//@docusaurus/core",
+        "@npm//@docusaurus/preset-classic",
+        "@npm//@mdx-js/react",
+        "@npm//@svgr/webpack",
+        "@npm//clsx",
+        "@npm//file-loader",
+        "@npm//prism-react-renderer",
+        "@npm//react",
+        "@npm//react-dom",
+        "@npm//url-loader",
+    ],
+)
+
+PROD_BUNDLE = ":prod"
+
+history_server(
+    name = "prodserver",
+    data = [PROD_BUNDLE],
+    templated_args = ["-a $$(rlocation $(rootpath %s))" % PROD_BUNDLE],
+)

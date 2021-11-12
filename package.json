@@ -1,0 +1,11 @@
+{
+  "name": "@ubiquitoustech/rules_docusaurus",
+  "version": "NPM_VERSION",
+  "description": "docusaurus rules for bazel",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ubiquitoustech/rules_docusaurus.git"
+  },
+  "author": "dymart",
+  "license": "Apache-2.0"
+}

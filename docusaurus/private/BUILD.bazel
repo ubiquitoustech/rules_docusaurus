@@ -1,0 +1,11 @@
+filegroup(
+    name = "package_content",
+    srcs = glob([
+        "*.bzl",
+        "*.bazel",
+        "*.sh",
+    ]),
+    visibility = ["//docusaurus:__pkg__"],
+)
+
+exports_files(["launcher_template.sh"])
