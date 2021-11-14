@@ -33,28 +33,6 @@ const config = {
               followSymlinks: true,
             },
             cache: false,
-            // target: 'web',
-            // module: {
-            //   rules: [
-            //     {
-            //       test: /\.+(js|jsx|mjs|ts|tsx)$/,
-            //       include: [
-            //         fs.realpathSync(__dirname + '/src'),
-            //         fs.realpathSync(__dirname + '/docs'),
-            //         fs.realpathSync(__dirname + '/blog'),
-            //         fs.realpathSync(__dirname + '/static'),
-            //       ],
-            //       use: [{loader: "babel-loader",}]
-            //     }
-            //   ]
-            // }
-            // devServer: {
-            //   // hot: false,
-            //   // liveReload: false,
-            //   // webSocketServer: 'ws',
-            //   // allowedHosts: 'all',
-            // },
-            // watch: true,
           };
         },
       };
@@ -94,6 +72,28 @@ const config = {
           src: "img/logo.svg",
         },
         items: [
+          {
+            type: "localeDropdown",
+            position: "right",
+            dropdownItemsAfter: [
+              {
+                href: "https://github.com/facebook/docusaurus/issues/3526",
+                label: "Help Us Translate",
+              },
+            ],
+          },
+          {
+            href: "https://github.com/facebook/docusaurus",
+            position: "right",
+            className: "header-github-link",
+            "aria-label": "GitHub repository",
+          },
+          {
+            type: "docsVersionDropdown",
+            position: "right",
+            dropdownItemsAfter: [{ to: "/versions", label: "All versions" }],
+            dropdownActiveClassDisabled: true,
+          },
           {
             type: "doc",
             docId: "intro",
